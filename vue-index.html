@@ -6,24 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Basic Data Binding</title>
+    <style>
+        /* Step 1 : Create a style class */
+        .is-loading {
+            background-color: palevioletred;
+        }
+    </style>
 </head>
 
 <body>
     <div id="root">
         <input type="text" id="input" v-model="message">
         <p>The value of input is : {{ message }}</p>
-        <!-- Step 2 : Create an UL with LI init -->
+
         <ul>
-            <!-- Step 3 : Use v-for to spray list array item -->
             <li v-for="name in names" v-text="name">
-                <!-- Step 4 : Use extracted variable as required -->
-                <!-- Alternatively : <p>{{ name }}</p> -->
             </li>
         </ul>
-        <!-- Step 5 : Add input box with button -->
         <input type="text" v-model="newName">
-        <!-- <button v-on:click="addNewName">Add Name</button> -->
         <button @click="addNewName">Add Name</button>
+
+        <br><br>
+        <p>Binding attribute to element</p>
+        <!-- Step 2a : Attribute binding -->
+        <!-- <button v-bind:title="title">Hover Over Me</button> -->
+        <button :title="title">Hover Over Me</button><br>
+        <!-- Step 2b : Bind css class to boolean variable and bind toogleClass method -->
+        <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Toogle Class Binding</button>
+        <button :disabled="isDiabled" @click="disableButton">Click to Disable</button>
+
     </div>
 
     <script src="vue.js"></script>
@@ -32,15 +43,22 @@
             el: '#root',
             data: {
                 message: "Hello World",
-                // Step 1 : Create a list of items
                 names: ['John', 'Jerry', 'Denial', 'Mary'],
                 newName: "",
+                title: "You found me !",
+                isLoading: false,
+                isDiabled: false,
             },
             methods: {
-                // Step 6 : Add model-data to array and clear data
                 addNewName() {
                     this.names.push(this.newName);
                     this.newName = "";
+                },
+                toggleClass() {
+                    this.isLoading = !this.isLoading;
+                },
+                disableButton() {
+                    this.isDiabled = true;
                 }
             },
         })
