@@ -28,13 +28,27 @@
 
         <br><br>
         <p>Binding attribute to element</p>
-        <!-- Step 2a : Attribute binding -->
-        <!-- <button v-bind:title="title">Hover Over Me</button> -->
         <button :title="title">Hover Over Me</button><br>
-        <!-- Step 2b : Bind css class to boolean variable and bind toogleClass method -->
         <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Toogle Class Binding</button>
         <button :disabled="isDiabled" @click="disableButton">Click to Disable</button>
 
+        <!-- Step 1 : Use computed property method -->
+        <!-- Example 1 -->
+        <p>{{ reversedMessage }}</p>
+        <br>
+
+        <!-- Example 2 -->
+        <p>ALL TASKS</p>
+        <ul>
+            <!-- List tru Array -->
+            <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+        </ul>
+        <br>
+        <p>INCOMPLETE TASKS</p>
+        <ul>
+            <!-- List tru Computed Property -->
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </ul>
     </div>
 
     <script src="vue.js"></script>
@@ -48,6 +62,31 @@
                 title: "You found me !",
                 isLoading: false,
                 isDiabled: false,
+                // Step 3 : Create a arraylist of task
+                tasks: [{
+                    description: "Go home",
+                    completed: true
+                },
+                {
+                    description: "Finish ScreenCast",
+                    completed: false
+                },
+                {
+                    description: "Make Donation",
+                    completed: false
+                },
+                {
+                    description: "Clean Home",
+                    completed: false
+                },
+                {
+                    description: "Play eith Adi",
+                    completed: false
+                },
+                {
+                    description: "Go to park",
+                    completed: true
+                }],
             },
             methods: {
                 addNewName() {
@@ -59,6 +98,18 @@
                 },
                 disableButton() {
                     this.isDiabled = true;
+                }
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message
+                        .split("")
+                        .reverse()
+                        .join("");
+                },
+                // Step 2 : Define computed property here
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed);
                 }
             },
         })
