@@ -1,0 +1,27 @@
+#root {
+    margin: 20px;
+}
+
+.main-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.color-red {
+    color: red;
+}
+
+.color-gold {
+    color: gold;
+}
+
+.btn {
+    font-weight: 700;
+    width: 100px;
+    height: 30px;
+    border: 1px solid grey;
+}
+
+.isLoading {
+    color: red;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" is-clipped>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Components</title>
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="root">
+
+        <!-- BULMA COMPONENT-->
+        <div class="container">
+            <!-- Part 1 -->
+            <message title="Hello World" body="Lorem ipsum dolor sit armature"></message>
+            <message title="Hello World" body="Lorem ipsum dolor sit armature"></message>
+            <button-counter></button-counter>
+            <br>
+
+            <!-- Part 2 -->
+            <!-- Custom Event Listner for 'close' event -->
+            <modal v-if="showModal" @close="showModal = false" modal_title="Important Notice" modal_body="Lorem ipsum dolor sit armature,Lorem ipsum dolor sit armature, 
+            Lorem ipsum dolor sit armatureLorem ipsum dolor sit armature, Lorem ipsum dolor sit armature">By Piyush
+                Gupta</modal>
+            <button @click="showModal = true">Show Modal</button>
+            <br><br><br>
+
+            <!-- Part 3 -->
+            <tabs>
+                <tab name="Home" :selected="true">
+                    <h1>I m a welcome home tab</h1>
+                </tab>
+                <tab name="About Us">
+                    <h1>About me what should i tell your first</h1>
+                </tab>
+                <tab name="Contact Us">
+                    <h1>Contact Us</h1>
+                </tab>
+                <tab name="Our Services">
+                    <h1>My services list </h1>
+                </tab>
+            </tabs>
+        </div>
+
+
+        <!-- Basics of Vue -->
+        <section style="visibility: collapse">
+            <input type='text' v-model='message'>
+            <p>The input text value is {{ message }}</p>
+            <hr>
+
+            <!-- JQUERY -->
+            <p class="main-text">JQUERY</p>
+            <ul>
+                <li v-for="name in names" v-text="name"></li>
+            </ul>
+            <input type='text' id='input'>
+            <button id="button">Add Name</button>
+            <br>
+
+            <!-- VUE JS -->
+            <p class="main-text">VUE.JS</p>
+            <ul>
+                <li v-for="country in countries" v-text="country"></li>
+            </ul>
+            <input type='text' v-model="country">
+            <!-- <button v-on:click="addValue">Add Value</button> -->
+            <button @click="addValue">Add Value</button>
+            <br><br>
+
+            <!-- BINDING -->
+            <!-- <button v-bind:title="title">Hover Over Me</button> -->
+            <button :title="title">Hover Over Me</button>
+            <h2 :class="className">Binded Class</h2>
+            <button class="btn" :class="{ 'isLoading': isLoading }" @click="toggleClass">Click Me</button>
+            <button class="btn" disabled @click="disable">Disabled</button>
+            <br><br>
+            <hr>
+
+            <!-- COMPUTED -->
+            <p> {{ message.split('').reverse().join('') }} </p>
+            <p> {{ reversedMessage }} </p>
+            <br>
+            <p class="main-text">ALL TASKS</p>
+            <ul>
+                <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+            </ul>
+            <br>
+            <p class="main-text">INCOMPLETE TASKS</p>
+            <ul>
+                <li v-for="task in incompleteTasks" v-text="task.description"></li>
+            </ul>
+            <hr>
+            <!-- VUE COMPONENTS -->
+            <p class="main-text">SINGLE VUE COMPONENT</p>
+            <job>Go to market</job>
+
+            <!-- VUE NESTED COMPONENT-->
+            <p class="main-text">NESTED VUE COMPONENT</p>
+            <joblist></joblist>
+            <br>
+            <hr><br>
+
+        </section>
+
+
+    </div>
+    <script src="vue.js"></script>
+    <script src="vuecode.js"></script>
+</body>
+
+</html>
