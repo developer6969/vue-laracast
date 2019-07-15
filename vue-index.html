@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Data Binding</title>
+</head>
+
+<body>
+    <!-- Step 1 : Give main div an id of root -->
+    <div id="root">
+        <!-- Step 4 : Bind the data model to input element -->
+        <input type="text" id="input" v-model="message">
+        <!-- Step 5 : Bind it also to textview element -->
+        <p>The value of inout is : {{ message }}</p>
+    </div>
+
+    <!-- Script -->
+    <script src="vue.js"></script>
+    <script>
+        // Step 2 : Create a data set for current page
+        let data = {
+            message: "Hello World"
+        };
+
+        // Step 3 : Create a a new vue instanse and connect
+        // with root-div and data-set, defined in step 1 & 2.
+        new Vue({
+            el: '#root',
+            data: data
+        })
+    </script>
+</body>
+
+</html>
